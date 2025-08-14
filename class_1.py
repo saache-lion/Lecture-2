@@ -46,7 +46,7 @@ print(A + B1)  #B1 has the same shape as A, so no broadcasting needed
 
 #To create a 2D array with random integers
 #We can use np.random.randint
-a = np.random.randint(100, size=(4,4)) #3 rows, 4 columns
+a =  np.random.randint(100, size=(4,4))#3 rows, 4 columns
 b = np.random.randint(100, size=(2,2)) 
 print(a)
 print(b)
@@ -56,10 +56,10 @@ print(b)
 #Numpy Arrays are more efficient than lists for numerical operations
 #They are optimized for performance and memory usage
 
-#Numpy vs List Performance Comparison
+#Numpy vs List Performance Comparisonp.random.randint(100, size=(4,4))n
 #Let's compare the performance of numpy arrays and lists for addition
 
-n=10_100_000  #1 million elements
+n=1_000_000_000  #1 million elements
 u = np.arange(n)
 v = np.arange(n)
 
@@ -68,7 +68,7 @@ import time as t
 start = t.time()
 print(u + v) 
 end = t.time()
-print("Time taken for numpy addition: ", end - start)
+print(f"Time taken for numpy addition:  {(end - start):.4f}")
 
 #Now let's compare it with lists
 start1 = t.time()
@@ -81,6 +81,27 @@ def add_vectors(a, b):
             result.append(a[i] + b[i])
     return result
 end1 = t.time() 
-print("Time taken for list addition: ", end1 - start1)
+print(f"Time taken for list addition: {(end1 - start1):.4f}")
 
-  
+#Numpy arrays are significantly faster than lists for numerical operations
+#This is because numpy uses optimized C libraries under the hood
+
+#vectorization
+#Numpy allows us to perform operations on entire arrays without explicit loops
+#ED formula: sqrt((x2 - x1)^2 + (y2 - y1)^2)
+#Let's calculate the Euclidean distance between two points in 2D space using numpy  
+
+#points = [[x1, y1], [x2, y2]...]
+#central_point = [X,Y]
+#distances = [d1,d2,d3..] ->output
+
+points = np.random.randint(100, size=(2,1)) #creates a 2D array with random integers
+central_point = np.array([50, 50])  #example central point
+
+def euclidean_distance(points, central_point):
+    distances = np.sqrt(np.sum((points - central_point) ** 2, axis=1))
+    return distances
+
+print("Points:", points)
+print("Central Point:", central_point)
+print("Distances:", euclidean_distance(points, central_point))
